@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transloadit Parallel Uploads</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 20px;
+      }
+
+      .container {
+        background: #ffffff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 1rem;
+        color: #555;
+        display: block;
+        margin-bottom: 8px;
+        text-align: left;
+      }
+
+      input[type="text"],
+      input[type="file"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      button:hover:not(:disabled) {
+        background-color: #0056b3;
+      }
+
+      .note {
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 10px;
+      }
+
+      .upload-url {
+        font-size: 0.9rem;
+        color: #007bff;
+        margin-top: 10px;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Try uploading with parallelUploads = 1 and then parallelUploads = 5 </div>
+    <div>Use a large file. While trying to do parallel uploads the final request fails with UPLOAD_NOT_FOUND</div>
+    <div class="container">
+      <h1>Transloadit Parallel Uploads</h1>
+
+      <label for="authKey">Enter Assembly Auth Key</label>
+      <input type="text" id="authKey" placeholder="Enter your auth key" />
+
+      <label for="template">Enter Template ID</label>
+      <input type="text" id="template" placeholder="Enter your template ID" />
+
+      <label for="fileInput">Select a File to Upload</label>
+      <input type="file" id="fileInput" />
+
+      <label for="parallelUploads">Number of Parallel Uploads</label>
+      <input
+        type="number"
+        id="parallelUploads"
+        placeholder="Enter number of parallel uploads"
+        min="1"
+        value="1"
+      />
+
+      <button id="uploadbtn">Upload Now</button>
+      <p class="note">Ensure all fields are filled before uploading.</p>
+      <p class="upload-url" id="uploadUrl"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tus-js-client/dist/tus.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
